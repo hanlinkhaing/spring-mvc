@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/master.html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+    <div layout:fragment="context">
+        <div class="alert alert-success" role="alert" th:if="${success1}">
+            New Product successfully submitted.
+        </div>
+
+        <div class="alert alert-success" role="alert" th:if="${register}">
+            You have successfully registered.
+        </div>
+
+        <div class="alert alert-success" role="alert" th:if="${success2}">
+            Product successfully updated.
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>LastUpdated</th>
+                <th>Category Name</th>
+                <th>Post Updated</th>
+                <th>Delete</th>
+                <th>Update</th>
+                <th>Details</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="pro:${products}">
+                <td th:text="${pro.name}"></td>
+                <td th:text="${pro.price}"></td>
+                <td th:text="${pro.quantity}"></td>
+                <td th:text="${pro.lastUpdted}"></td>
+                <td th:text="${pro.category.name}"></td>
+                <td th:text="${pro.getPrettyTime()}"></td>
+                <td><a href="#" class="btn btn-primary" th:href="@{'/products/'+${pro.id}}">Delete</a></td>
+                <th><a href="#" class="btn btn-primary" th:href="@{'/products/update/'+${pro.id}}">Update</a></th>
+                <th><a href="#" class="btn btn-primary" th:href="@{'/products/details/'+${pro.id}}">Details</a></th>
+            </tr>
+
+            </tbody>
+        </table>
+        <a href="#" class="btn btn-success" th:href="@{/products/pdf}">Pdf View</a>
+    </div>
+</body>
+</html>

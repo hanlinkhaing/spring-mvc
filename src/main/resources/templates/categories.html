@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/master.html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+    <div layout:fragment="context">
+        <div class="alert alert-success" role="alert" th:if="${success1}">
+            New Category successfully submitted.
+        </div>
+        <table class="table">
+            <thead class="table-dark bg-dark text-light">
+            <tr>
+                <th>Category Id</th>
+                <th>Category Name</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cat :${categories}">
+                <td th:text="${cat.id}"></td>
+                <td th:text="${cat.name}"></td>
+
+            </tr>
+
+            </tbody>
+        </table>
+
+        <a href="#" th:href="@{/category}" class="btn btn-primary">Back</a>
+    </div>
+</body>
+</html>
